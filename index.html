@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dr. Foss — SoundCloud Stats</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0e0e11;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.2em;
+    }
+    ol {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0;
+      list-style-position: inside;
+    }
+    a { color: #7dd3fc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<h1 id="plays">— plays</h1>
+<p>on SoundCloud</p>
+
+<h2>Top tracks (all time)</h2>
+<ol id="top"></ol>
+
+<script>
+fetch("https://raw.githubusercontent.com/spacejulesofficial-max/drfoss-stats/main/drfoss_stats.json")
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById("plays").textContent =
+      d.total_plays.toLocaleString();
+
+    const list = document.getElementById("top");
+    d.top_10_all_time.forEach(t => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${t.URL}" target="_blank">${t.Title}</a>
+        <span style="opacity:.6"> (${t.Plays.toLocaleString()})</span>`;
+      list.appendChild(li);
+    });
+  });
+</script>
+
+</body>
+</html>
