@@ -34,7 +34,7 @@
 <ol id="top"></ol>
 
 <script>
-fetch("https://raw.githubusercontent.com/spacejulesofficial-max/drfoss-stats/main/drfoss_stats.json")
+fetch("https://raw.githubusercontent.com/spacejulesofficial-max/drfoss-stats/main/drfoss_stats.json?ts=" + Date.now())
   .then(r => r.json())
   .then(d => {
     document.getElementById("plays").textContent =
