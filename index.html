@@ -29,12 +29,16 @@
 
 <h1 id="plays">— plays</h1>
 <p>on SoundCloud</p>
-<p style="opacity:0.6; font-size:0.9em;">Updated periodically</p>
+<p id="updated" style="opacity:0.6; font-size:0.9em;"></p>
+
 
 <h2>Top tracks (all time)</h2>
 <ol id="top"></ol>
 
 <script>
+  document.getElementById("updated").textContent =
+  "Last updated: " + new Date().toLocaleString();
+
 fetch("https://raw.githubusercontent.com/spacejulesofficial-max/drfoss-stats/main/drfoss_stats.json?ts=" + Date.now())
   .then(r => r.json())
   .then(d => {
